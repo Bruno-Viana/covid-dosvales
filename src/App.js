@@ -70,19 +70,136 @@ function App() {
   const[Carregando, SetCarregando] = useState(false);
 
   const buscaDados = async () =>{
+    SetCarregando(true);
     try{
-      Axios.get("https://covid-dosvales.herokuapp.com/api/dados").then(
+      await Axios.get("https://covid-dosvales.herokuapp.com/api/dados").then(
         (res) => {
-          //console.log(res.data);
+          console.log(res.data);
           SetDados(res.data);
         }
       )
-      SetCarregando(true);
     } catch(e){
-      <>
-        <h1>O seguinte erro Ocorreu:</h1>
-        <p>{e}</p>
-      </>
+      //Em casos onde a API não funcionar mais pelas restrições do Heroku OU a secretaria da saúde mudar os elementos da página já que a API faz web scrapping. Os dados retirados foram de 18/10/23
+      const staticData = [
+        {
+         "nome": "Arroio do Meio",
+         "confirmados": "6021",
+         "novosconfirmados": "61",
+         "incidencia": "28940.2",
+         "obitos": "61",
+         "novosobitos": "1",
+         "mortalidade": "293.2"
+        },
+        {
+         "nome": "Cachoeira do Sul",
+         "confirmados": "25033",
+         "novosconfirmados": "108",
+         "incidencia": "30453.4",
+         "obitos": "251",
+         "novosobitos": "2",
+         "mortalidade": "305.3"
+        },
+        {
+         "nome": "Candelária",
+         "confirmados": "6784",
+         "novosconfirmados": "40",
+         "incidencia": "21629.2",
+         "obitos": "91",
+         "novosobitos": "0",
+         "mortalidade": "290.1"
+        },
+        {
+         "nome": "Lajeado",
+         "confirmados": "27164",
+         "novosconfirmados": "361",
+         "incidencia": "32332.7",
+         "obitos": "251",
+         "novosobitos": "3",
+         "mortalidade": "298.8"
+        },
+        {
+         "nome": "Passo do Sobrado",
+         "confirmados": "1521",
+         "novosconfirmados": "3",
+         "incidencia": "23274.7",
+         "obitos": "20",
+         "novosobitos": "0",
+         "mortalidade": "306.1"
+        },
+        {
+         "nome": "Rio Pardo",
+         "confirmados": "9014",
+         "novosconfirmados": "2",
+         "incidencia": "23550.6",
+         "obitos": "110",
+         "novosobitos": "0",
+         "mortalidade": "308.3"
+        },
+        {
+         "nome": "Santa Cruz do Sul",
+         "confirmados": "49491",
+         "novosconfirmados": "123",
+         "incidencia": "37948.6",
+         "obitos": "416",
+         "novosobitos": "2",
+         "mortalidade": "319.0"
+        },
+        {
+         "nome": "Sinimbu",
+         "confirmados": "1598",
+         "novosconfirmados": "9",
+         "incidencia": "15709.8",
+         "obitos": "25",
+         "novosobitos": "1",
+         "mortalidade": "245.8"
+        },
+        {
+         "nome": "Sobradinho",
+         "confirmados": "3877",
+         "novosconfirmados": "21",
+         "incidencia": "25903.7",
+         "obitos": "7",
+         "novosobitos": "0",
+         "mortalidade": "227.2"
+        },
+        {
+         "nome": "Taquari",
+         "confirmados": "4869",
+         "novosconfirmados": "13",
+         "incidencia": "18126.0",
+         "obitos": "87",
+         "novosobitos": "0",
+         "mortalidade": "323.9"
+        },
+        {
+         "nome": "Vale Verde",
+         "confirmados": "569",
+         "novosconfirmados": "4",
+         "incidencia": "16271.1",
+         "obitos": "9",
+         "novosobitos": "0",
+         "mortalidade": "257.4"
+        },
+        {
+         "nome": "Venâncio Aires",
+         "confirmados": "19961",
+         "novosconfirmados": "152",
+         "incidencia": "27896.4",
+         "obitos": "157",
+         "novosobitos": "1",
+         "mortalidade": "219.4"
+        },
+        {
+         "nome": "Vera Cruz",
+         "confirmados": "7150",
+         "novosconfirmados": "73",
+         "incidencia": "26616.5",
+         "obitos": "55",
+         "novosobitos": "0",
+         "mortalidade": "204.7"
+        }
+       ]
+      SetDados(staticData)
     }
   }
 
